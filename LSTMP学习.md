@@ -1,4 +1,4 @@
-
+#! https://zhuanlan.zhihu.com/p/539079000
 # LSTMP学习记录
 
 ## 传统LSTM公式
@@ -12,7 +12,7 @@ $ i_t = \sigma_g(W_i x_t + U_i H_{t-1} + b_i) $
 
 $ o_t = \sigma_g(W_o x_t + U_o H_{t-1} + b_o) $
 
-$ \tilde c_t = \sigma_g(W_c x_t + U_c H_{t-1} + b_c) $
+$ \tilde{c}_t = \sigma_g(W_c x_t + U_c H_{t-1} + b_c) $
 
 $ c_t = f_t \circ c_{t-1} + i_t \circ \tilde{c}_t  $
 
@@ -20,7 +20,7 @@ $ h_t = o_t \circ \sigma_h(c_t) $
 
 其中：
 
-$ x_{t}\in {R}^{d}$ : input vector to the LSTM unit
+$ x_{t}\in {R}^{d} $ : input vector to the LSTM unit
 
 $ f_{t}\in {(0,1)}^{h}$ : forget gate's activation vector
 
@@ -40,16 +40,29 @@ $ W\in \mathbb {R} ^{h\times d}$ , $ U\in \mathbb {R} ^{h\times h}$ and $ b\in \
 ## LSTM Projection with PeepHole公式
 
 
-$ f_t = \sigma_g(W_f x_t+U_f r_{t-1}+V_{f} \circ c_{t-1}+b_f) $ 
+$ f_{t} = \sigma _{g}(W_{f}*x_{t}+U_{f}*r_{t-1}+V_{f}\circ c_{t-1}+b_{f})$ 
 
-$ i_t = \sigma_g(W_i x_t+U_{i} r_{t-1}+V_{i}\circ c_{t-1}+b_{i}) $ 
+$ i_{t} = \sigma _{g}(W_{i}*x_{t}+U_{i}*r_{t-1}+V_{i}\circ c_{t-1}+b_{i})$ 
 
-$ c_t = f_t \circ c_{t-1}+i_{t}\circ \sigma_{c}(W_{c} x_{t}+U_{c} r_{t-1}+b_{c}) $ 
+$ c_{t}= f_{t}\circ c_{t-1}+i_{t}\circ \sigma _{c}(W_{c}*x_{t}+U_{c}*r_{t-1}+b_{c})$ 
 
-$ o_t = \sigma_{g}(W_{o} x_{t}+U_{o} r_{t-1}+V_{o}\circ c_{t}+b_{o}) $ 
+$ o_{t} = \sigma _{g}(W_{o}*x_{t}+U_{o}*r_{t-1}+V_{o}\circ c_{t}+b_{o})$ 
 
-$ h_t = o_{t}\circ \sigma_{h}(c_{t}) $ 
+$ h_{t} = o_{t}\circ \sigma _{h}(c_{t})$ 
 
-$ r_t = W_r h_t $ 
+$ r_{t} = W_{r} h_{t}$ 
+
+
+$ W\in \mathbb {R} ^{h\times d}$ : input weight matrices parameters which need to be learned during training
+
+$ b\in \mathbb {R} ^{h}$ : bias vector parameters which need to be learned during training
+
+$ U\in \mathbb {R} ^{h\times h}$ : hidden weight matrices parameters which need to be learned during training
+
+$ V\in \mathbb {R} ^{h\times d}$ : peepHole matrices parameters which need to be learned during training
+
+$ W_{r}\in \mathbb {R} ^{h\times d}$ : Projection matrices parameters which need to be learned during training
+
+
 
 
